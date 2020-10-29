@@ -3,15 +3,20 @@ import UIKit
 
 
 class Book{
-    private let name: String
-    private let purchaseID: Int
-    private let marketPrice: Double
+    let name: String
+    let purchaseID: Int
+    let marketPrice: Double
     
     
     init(name: String, purchaseID: Int, marketPrice: Double) {
         self.name = name
         self.purchaseID = purchaseID
         self.marketPrice = marketPrice
+    }
+    
+    
+    func bookPrinter() -> String {
+        return "Name: \(self.name) Price: \(marketPrice) Purchace Id: \(purchaseID)"
     }
         
 }
@@ -24,10 +29,20 @@ class Shelf{
         self.shelfName = shelfName
     }
 
-    func add(books : Book ){
-        self.books.append(books)
+    func add(book : Book ){
+        self.books.append(book)
     }
     
+    func delete(book : Book){
+    
+    }
+    
+    
+    func printer() {
+        for b in self.books{
+            print(b.bookPrinter())
+        }
+    }
     
   
     
@@ -39,5 +54,9 @@ var book = Book(name: "A book", purchaseID: 12, marketPrice: 9.90)
 var bookIntheshelf = Shelf(shelfName: "Book Shelf")
 
 
-bookIntheshelf.add(books: book)
+bookIntheshelf.add(book: book)
+bookIntheshelf.add(book: book)
+bookIntheshelf.add(book: book)
 
+
+bookIntheshelf.printer()
