@@ -30,23 +30,36 @@ class Book: Hashable{
 
 class Shelf{
       private let shelfName: String
-     private var setOfBooks = Set<Book>()
-
-     init(shelfName: String) {
+      private var setOfBooks = Set<Book>()
+      private var averageBookPrice: Double
+      private var howManyBooksInTheShelf: Int
+    
+    init(shelfName: String) {
          self.shelfName = shelfName
+         self.averageBookPrice = 0
+         self.howManyBooksInTheShelf = 0
      }
 
      func add(book: Book){
-         if !setOfBooks.contains(book) {
+        if !setOfBooks.contains(book) {
              setOfBooks.insert(book)
-         }
+            self.averageBookPrice += book.marketPrice
+            self.howManyBooksInTheShelf += 1
+       
+        }else{
+            print("Book already exists")
+        }
      }
 
      func delete(book: Book){
          setOfBooks.remove(book)
      }
    
-
+    func averagePrice(){
+        print("Average: \(self.averageBookPrice / Double(self.howManyBooksInTheShelf))")
+    }
+    
+    
     
     func printer() {
         for books in self.setOfBooks{
@@ -71,4 +84,12 @@ myShelf.add(book: myBooks)
 myShelf.add(book: myBook)
 
 
+
+
+
 myShelf.printer()
+myShelf.add(book: myBook)
+myShelf.printer()
+
+
+myShelf.averagePrice()
